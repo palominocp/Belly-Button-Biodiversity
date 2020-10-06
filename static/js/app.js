@@ -1,24 +1,24 @@
 d3.json("samples.json").then((data) => {
   //  Create the Traces
+  console.log(data.samples[0].otu_ids.slice(0,10));
+  console.log(data.samples[0].sample_values.slice(0,10));
   var trace1 = {
-    x: data.names,
-    y: data.metadata.map(val => Math.sqrt(val)),
-    type: "box",
-    name: "Cancer Survival",
-    boxpoints: "all"
+    y: data.samples[0].otu_ids.slice(0,10).toString(),
+    x: data.samples[0].sample_values.slice(0,10),
+    type: "bar",
+    orientation: 'h'
   };
 
   console.log(trace1);
+
   // Create the data array for the plot
   var data = [trace1];
-  console.log(data);
 
   // Define the plot layout
   var layout = {
-    title: "Square Root of Cancer Survival by Organ",
-    xaxis: { title: "Organ" },
-    yaxis: { title: "Square Root of Survival" },
-    plot_bgcolor: "#000"
+    title: "Top 10 OTUs",
+    xaxis: { title: "otu_ids" },
+    yaxis: { title: "sample_values" },
   };
   
   // Plot the chart to a div tag with id "plot"
