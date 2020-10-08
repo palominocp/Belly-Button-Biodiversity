@@ -25,14 +25,18 @@ function updatePlotly() {
     var indx = data.names.indexOf(indiv.toString());
     console.log(indiv);
     console.log(indx);
-     console.log(data.samples[indx].otu_ids.slice(0,10));
-     console.log(data.samples[indx].sample_values.slice(0,10));
-     var trace1 = {
-       y: data.samples[indx].otu_ids.slice(0,10).toString(),
-       x: data.samples[indx].sample_values.slice(0,10),
-       type: "bar",
-       orientation: 'h'
-    };
+      console.log(data.samples[indx].otu_ids.slice(0,10));
+      console.log(data.samples[indx].sample_values.slice(0,10));
+      var yvalues = data.samples[indx].otu_ids.slice(0,10);
+      var yvaluesf = yvalues.map(item => {
+        return "OTU " + item.toString();
+      });
+      var trace1 = {
+        y: yvaluesf.reverse(),
+        x: data.samples[indx].sample_values.slice(0,10).reverse(),
+        type: "bar",
+        orientation: 'h'
+      };
 
     console.log(trace1);
 
