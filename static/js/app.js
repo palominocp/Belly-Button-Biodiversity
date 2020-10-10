@@ -60,8 +60,8 @@ function updatePlotly() {
       y: data.samples[indx].sample_values,
       mode: 'markers',
       marker: {
-        size: data.samples[indx].sample_values
-        // color: data.samples[indx].otu_ids
+        size: data.samples[indx].sample_values,
+        color: data.samples[indx].otu_ids
       }
     };
 
