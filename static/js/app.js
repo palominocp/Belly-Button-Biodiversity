@@ -72,5 +72,14 @@ function updatePlotly() {
     }
 
     Plotly.newPlot('bubble', data_bubble, layout);
+
+    d3.selectAll('h6').remove();
+    d3.select(".panel-body").insert("h6").text("id: " + data.metadata[indx].id);
+    d3.select(".panel-body").insert("h6").text("ethnicity: " + data.metadata[indx].ethnicity);
+    d3.select(".panel-body").insert("h6").text("gender: " + data.metadata[indx].gender);
+    d3.select(".panel-body").insert("h6").text("age: " + data.metadata[indx].age);
+    d3.select(".panel-body").insert("h6").text("location: " + data.metadata[indx].location);
+    d3.select(".panel-body").insert("h6").text("bbtype: " + data.metadata[indx].bbtype);
+    d3.select(".panel-body").insert("h6").text("wfreq: " + data.metadata[indx].wfreq);
   });
 };
