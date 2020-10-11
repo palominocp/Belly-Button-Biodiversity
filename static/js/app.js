@@ -5,6 +5,7 @@ d3.json("samples.json").then((data) => {
     for (i = 0; i < data.names.length; i++) {
         var option = document.createElement("option");
         option.text = data.names[i];
+        // option.value = data.names[i];
         select.appendChild(option);
     };
 
@@ -20,7 +21,8 @@ d3.json("samples.json").then((data) => {
         y: yvalues.reverse(),
         x: data.samples[index].sample_values.slice(0,10).reverse(),
         type: "bar",
-        orientation: 'h'
+        orientation: 'h',
+        hovertext: data.samples[index].otu_labels.slice(0,10)
     };
 
     var data_bar = [trace1];
@@ -66,14 +68,16 @@ d3.json("samples.json").then((data) => {
 
 });
 
-// Run updatePlotly function whenever there is a new selection
-d3.selectAll("#selDataset").on("change", updatePlotly);
-  
-function updatePlotly() {
+// Function optionChanged runs whenever there is a new selection
+// This is similar to: d3.selectAll("#selDataset").on("change", updatePlotly);
+function optionChanged(value) {
 
     // Get the selected value
-    var dropdownMenu = d3.select("#selDataset");
-    var dataset = dropdownMenu.property("value");
+    var dataset = value;
+    // If updatePlotly function was used:
+    // var dropdownMenu = d3.select("#selDataset");
+    // var dataset = dropdownMenu.property("value");
+    
 
     d3.json("samples.json").then((data) => {
 
@@ -89,7 +93,8 @@ function updatePlotly() {
             y: yvalues.reverse(),
             x: data.samples[index].sample_values.slice(0,10).reverse(),
             type: "bar",
-            orientation: 'h'
+            orientation: 'h',
+            hovertext: data.samples[index].otu_labels.slice(0,10)
         };
 
         // Create the data array for the plot
